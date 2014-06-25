@@ -97,7 +97,7 @@ DAOProvider daoProvider = new DAOProvider(myDatabase);
 
 ###Getting DAO for People table
 ~~~
-DAO people = daoProvider.get("people"); // gets a DAO for the people table.
+DAO<Map> people = (DAO<Map>)daoProvider.get("people"); // gets a DAO for the people table.
 ~~~
 
 ### Creating a New Record
@@ -114,7 +114,7 @@ people.save(person);
 ### Fetching All People
 
 ~~~
-List<Map> thePeople = people.fetchAll();
+List<Map> thePeople = )people.fetchAll();
 for ( Map person : thePeople ){
     Log.p("Person "+person.get("id")+" is "+person.get("name"));
 }
@@ -128,10 +128,10 @@ Map person = people.getById(1);
 
 ###Fetching People with Query
 ~~~
-List<Map> matches = people.fetch(new String[]{"name","Steve"});
+List<Map> matches = )people.fetch(new String[]{"name","Steve"});
   // Fetches all people where name=Steve
   
-matches = people.fetch(new String[]{
+matches = )people.fetch(new String[]{
 	"name", "Steve",
 	"age", "35"
 	});
