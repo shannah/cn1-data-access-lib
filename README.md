@@ -65,7 +65,7 @@ Apache 2.0
 
 ##Support
 
-Post issues in the issue tracker.
+Post issues in the [issue tracker](https://github.com/shannah/cn1-data-access-lib/issues).
 
 ##Installation
 
