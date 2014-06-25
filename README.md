@@ -11,6 +11,7 @@ This provides a Data access layer for SQLite databases in [Codename One](http://
 5. [License](#license)
 6. [Support](#support)
 7. [Installation](#installation)
+8. [JavaDocs](https://rawgit.com/shannah/cn1-data-access-lib/master/dist/javadoc/index.html)
 8. [Getting Started](#getting-started)
 	1. [Setting up DAOProvider](#setting-up-daoprovider)
 	2. [Getting DAO for People Table](#getting-dao-for-people-table)
@@ -70,6 +71,9 @@ Post issues in the issue tracker.
 1. Download [CN1DataAccess.cn1lib](https://github.com/shannah/cn1-data-access-lib/blob/master/dist/CN1DataAccess.cn1lib?raw=true) and copy into your app's "lib" directory.
 2. Right click on your project in the Netbeans project explorer, and select "Refresh Libs".
 
+##JavaDocs
+
+[JavaDocs available here](https://rawgit.com/shannah/cn1-data-access-lib/master/dist/javadoc/index.html)
 
 ##Getting Started
 
