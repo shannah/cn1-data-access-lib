@@ -114,7 +114,7 @@ people.save(person);
 ### Fetching All People
 
 ~~~
-List<Map> thePeople = )people.fetchAll();
+List<Map> thePeople = people.fetchAll();
 for ( Map person : thePeople ){
     Log.p("Person "+person.get("id")+" is "+person.get("name"));
 }
@@ -128,7 +128,7 @@ Map person = people.getById(1);
 
 ###Fetching People with Query
 ~~~
-List<Map> matches = )people.fetch(new String[]{"name","Steve"});
+List<Map> matches = people.fetch(new String[]{"name","Steve"});
   // Fetches all people where name=Steve
   
 matches = )people.fetch(new String[]{
