@@ -325,7 +325,7 @@ For example, if it is common to want to search for people in a department, you m
 ~~~
 
 public List<Person> fetchPeopleInCompany(Company company){
-    return this.fetchAll("select * from people p inner join companies_people cp on p.id=cp.person_id where cp.company_id=?", new String[]{""+company.getId()});
+    return this.fetchAll("select p.* from people p inner join companies_people cp on p.id=cp.person_id where cp.company_id=?", new String[]{""+company.getId()});
 }
 
 ~~~
