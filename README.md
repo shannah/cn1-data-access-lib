@@ -26,6 +26,7 @@ This provides a Data access layer for SQLite databases in [Codename One](http://
 10. [Custom Entity Classes](#custom-entity-classes)
 11. [Database Creating and Versioning](#database-creating-and-versioning)
 12. [Limitations and Constraints](#limitations-and-constraints)
+13. [Tests and Examples](#tests-and-examples)
 13. [Credits](#credits)
 
 ##Motivation
@@ -465,6 +466,14 @@ Now, if users are installing the app for the first time, it will execute all of 
 ##Limitations and Constraints
 
 1. Currently tables for which you register a DAO *must* contain a column named "id" of type INTEGER, and it should be AUTOINCRENT.  This is the column that will be treated as the primary key of the table.
+
+##Tests and Examples
+
+For further example usage and testing of the library, you can check out the Test application.  [This application](https://github.com/shannah/cn1-data-access-lib-tests) is just a placeholder to run the CN1 tests (i.e. it's not really an app.. You just use the "Test" function of it).  Some interesting things you may wish to look at:
+
+1. [The Test Suite](https://github.com/shannah/cn1-data-access-lib-tests/blob/master/test/ca/weblite/codename1/db/DAOTest.java).  This runs a number of tests, and in doing so, it demonstrates a number of features of the library.
+2. [The setup.sql file](https://github.com/shannah/cn1-data-access-lib-tests/blob/master/src/setup.sql).  This shows a sample SQL config file with versioning.
+3. [Importing JSON](https://github.com/shannah/cn1-data-access-lib-tests/blob/master/test/ca/weblite/codename1/db/DAOTest.java#L172), from [this sample JSON data set](https://github.com/shannah/cn1-data-access-lib-tests/blob/master/src/test1.json).
 
 
 ##Credits
