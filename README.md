@@ -1,8 +1,30 @@
 #Codename One Data Access Library
 
-##Synopsis
-
 This provides a Data access layer for SQLite databases in [Codename One](http://www.codenameone.com).
+
+##Contents
+
+1. [Motivation](#motivation)
+2. [Features](#features)
+3. [Requirements](#requirements)
+4. [Supported Platforms](#supported-platforms)
+5. [License](#license)
+6. [Support](#support)
+7. [Installation](#installation)
+8. [Getting Started](#getting-started)
+	1. [Setting up DAOProvider](#setting-up-daoprovider)
+	2. [Getting DAO for People Table](#getting-dao-for-people-table)
+	3. [Creating a New Record](#creating-a-new-record)
+	4. [Fetching All People](#fetching-all-people)
+	5. [Fetching Person By ID](#fetching-person-by-id)
+	6. [Fetching People With Query](#fetching-people-with-query)
+	7. [Importing from List](#importing-from-list)
+	8. [Importing from a Map with Nested Lists](#importing-from-a-map-with-nested-lists)
+	9. [Importing from a JSON data set](#importing-from-a-json-data-set)
+9. [Creating a Custom DAO Class](#creating-a-custom-dao-class)
+10. [Custom Entity Classes](#custom-entity-classes)
+11. [Database Creating and Versioning](#database-creating-and-versioning)
+12. [Credits](#credits)
 
 ##Motivation
 
@@ -44,7 +66,7 @@ Post issues in the issue tracker.
 
 ##Installation
 
-1. Download CN1DataAccess.cn1lib and copy into your app's "lib" directory.
+1. Download [CN1DataAccess.cn1lib](https://github.com/shannah/cn1-data-access-lib/blob/master/dist/CN1DataAccess.cn1lib?raw=true) and copy into your app's "lib" directory.
 2. Right click on your project in the Netbeans project explorer, and select "Refresh Libs".
 
 
@@ -434,6 +456,10 @@ DAOProvider provider = new DAOProvider(db, "/setup.sql", 2);
 ~~~ 
 
 Now, if users are installing the app for the first time, it will execute all of the SQL statements for version 1 and 2 (because the databse will be starting from 0).  But if users had previously installed the app and already had version 1 of the schema, then it would only execute the statements in version 2 (i.e. the ALTER TABLE statement that we added).
+
+##Limitations and Constraints
+
+1. Currently tables for which you register a DAO *must* contain a column named "id" of type INTEGER, and it should be AUTOINCRENT.  This is the column that will be treated as the primary key of the table.
 
 
 ##Credits
