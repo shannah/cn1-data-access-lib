@@ -31,7 +31,7 @@ This provides a Data access layer for SQLite databases in [Codename One](http://
 
 ##Motivation
 
-In almost all Codename One apps that I write (that use a database) there are two key functions that always occur:
+In almost all Codename One apps that I write (that use a database) there are three key functions that always occur:
 
 1. Creating the database schema, and updating the database schema for successive versions of the app.
 2. Loading data from a Web service into the database.  Usually from a JSON data source, but not always.
