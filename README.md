@@ -465,7 +465,7 @@ Now, if users are installing the app for the first time, it will execute all of 
 
 ##Limitations and Constraints
 
-1. Currently tables for which you register a DAO *must* contain a column named "id" of type INTEGER, and it should be AUTOINCRENT.  This is the column that will be treated as the primary key of the table.
+1. Currently tables for which you register a DAO *must* contain a column named "id" of type INTEGER, and it should be AUTOINCREMENT.  This is the column that will be treated as the primary key of the table.
 
 ##Tests and Examples
 
