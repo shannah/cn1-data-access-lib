@@ -24,7 +24,7 @@ This provides a Data access layer for SQLite databases in [Codename One](http://
 	9. [Importing from a JSON data set](#importing-from-a-json-data-set)
 9. [Creating a Custom DAO Class](#creating-a-custom-dao-class)
 10. [Custom Entity Classes](#custom-entity-classes)
-11. [Database Creating and Versioning](#database-creating-and-versioning)
+11. [Database Creation and Versioning](#database-creation-and-versioning)
 12. [Limitations and Constraints](#limitations-and-constraints)
 13. [Tests and Examples](#tests-and-examples)
 13. [Credits](#credits)
