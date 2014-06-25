@@ -131,7 +131,7 @@ Map person = people.getById(1);
 List<Map> matches = people.fetch(new String[]{"name","Steve"});
   // Fetches all people where name=Steve
   
-matches = )people.fetch(new String[]{
+matches = people.fetch(new String[]{
 	"name", "Steve",
 	"age", "35"
 	});
