@@ -604,6 +604,7 @@ public abstract class DAO<T> {
                         //w = cache.get(existing);
                         unmap(existing, m);
                     } else {
+                        w = null;
                         cache.remove(id);
                     }
                 }
@@ -613,7 +614,10 @@ public abstract class DAO<T> {
             if ( w == null ){
                 object = newObject();
                 w = initObject((Long)m.get("id"), object,  m);
-            } 
+            }
+            if ( w.getObject() == null ){
+                throw new RuntimeException("Received null object for id "+m.get("id")+" this shouldn't happen.");
+            }
             out.add(w.getObject());
         }
         c.close();
