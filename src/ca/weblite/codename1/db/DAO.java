@@ -561,17 +561,25 @@ public abstract class DAO<T> {
                 
             }
         }
-        Cursor c = db.executeQuery(selectByIdStatement(), selectByIdArgs(id));
-        
-        Map m = new HashMap();
-        if ( c.next() ){
-            fillMap(c, m);
-            c.close();
-            T object = newObject();
-            Wrapper w = initObject(id, object,  m);
-            return object;
-            
+        Cursor c = null;
+        try {
+            c = db.executeQuery(selectByIdStatement(), selectByIdArgs(id));
+            Map m = new HashMap();
+            if ( c.next() ){
+                fillMap(c, m);
+                
+                T object = newObject();
+                Wrapper w = initObject(id, object,  m);
+                return object;
+
+            }
+        } finally {
+            if ( c != null ){
+                c.close();
+            }
         }
+        
+        
         
         return null;
         
@@ -589,38 +597,45 @@ public abstract class DAO<T> {
      * @throws IOException 
      */
     protected List<T> fetchAll(String sqlQuery, String[] params) throws IOException{
-        Cursor c = db.executeQuery(sqlQuery, params);
+        Cursor c = null;
         List<T> out = new ArrayList<T>();
-        while ( c.next() ){
-            Map m = new HashMap();
-            fillMap(c, m);
-            Wrapper w = null;
-            if ( m.containsKey("id") ){
-                long id = (Long)m.get("id");
-                w = cache.get(id);
-                if ( w != null ){
-                    T existing = w.getObject();
-                    if ( existing != null ){
-                        //w = cache.get(existing);
-                        unmap(existing, m);
-                    } else {
-                        w = null;
-                        cache.remove(id);
+        try {
+            c = db.executeQuery(sqlQuery, params);
+            
+            while ( c.next() ){
+                Map m = new HashMap();
+                fillMap(c, m);
+                Wrapper w = null;
+                if ( m.containsKey("id") ){
+                    long id = (Long)m.get("id");
+                    w = cache.get(id);
+                    if ( w != null ){
+                        T existing = w.getObject();
+                        if ( existing != null ){
+                            //w = cache.get(existing);
+                            unmap(existing, m);
+                        } else {
+                            w = null;
+                            cache.remove(id);
+                        }
                     }
+
                 }
-                
+                T object; // so that the w.getObject() weakref doesn't get gc'd
+                if ( w == null ){
+                    object = newObject();
+                    w = initObject((Long)m.get("id"), object,  m);
+                }
+                if ( w.getObject() == null ){
+                    throw new RuntimeException("Received null object for id "+m.get("id")+" this shouldn't happen.");
+                }
+                out.add(w.getObject());
             }
-            T object; // so that the w.getObject() weakref doesn't get gc'd
-            if ( w == null ){
-                object = newObject();
-                w = initObject((Long)m.get("id"), object,  m);
+        } finally {
+            if (c != null ){
+                c.close();
             }
-            if ( w.getObject() == null ){
-                throw new RuntimeException("Received null object for id "+m.get("id")+" this shouldn't happen.");
-            }
-            out.add(w.getObject());
         }
-        c.close();
         return out;
     }
     
@@ -645,19 +660,26 @@ public abstract class DAO<T> {
         //Log.p("Just set object "+object+" so we have "+w.getObject());
 
         db.execute(insertStatement(m), insertArgs(m));
-        Cursor c = db.executeQuery("select last_insert_rowid()");
-        if ( c.next() ){
-            id = c.getRow().getLong(0);
-            m.put("id", id);
-            unmap(object, m);
-            //index.put(w.id, object);
-            cache.put(id, w);
-            w.dirty.clear();
-            w.dirtyFlag = false;
-            
+        Cursor c = null;
+        try {
+            c = db.executeQuery("select last_insert_rowid()");
+            if ( c.next() ){
+                id = c.getRow().getLong(0);
+                m.put("id", id);
+                unmap(object, m);
+                //index.put(w.id, object);
+                cache.put(id, w);
+                w.dirty.clear();
+                w.dirtyFlag = false;
 
-        } else {
-            throw new IOException("Failed to get the insert ID");
+
+            } else {
+                throw new IOException("Failed to get the insert ID");
+            }
+        } finally {
+            if ( c != null ){
+                c.close();
+            }
         }
             
     }

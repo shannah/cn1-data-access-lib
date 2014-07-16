@@ -184,14 +184,14 @@ public class DAOProvider {
                 });
                 for (Map.Entry<Integer,List<String>> v : entries ){
                     if ( v.getKey() > dbVersion ){
-                        db.beginTransaction();
+                        //db.beginTransaction();
                         List<String> commands = v.getValue();
                         for ( String cmd : commands ){
                             db.execute(cmd);
                         }
                         setDatabaseVersion(db, v.getKey());
                         dbVersion = v.getKey();
-                        db.commitTransaction();
+                        //db.commitTransaction();
                     }
                 
                 }
@@ -422,5 +422,9 @@ public class DAOProvider {
             }
             return false;
         }
+    }
+    
+    public Database getDatabase(){
+        return db;
     }
 }
