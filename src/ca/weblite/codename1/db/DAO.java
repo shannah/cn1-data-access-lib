@@ -150,7 +150,7 @@ public abstract class DAO<T> {
             largs.add(""+m.get(e.getKey()));
         }
         largs.add(id);
-        return largs.toArray(new Object[0]);
+        return largs.toArray();
     }
     
     /**
