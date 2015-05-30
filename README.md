@@ -55,8 +55,7 @@ None.  Just [Codename One](http://www.codenameone.com).
 * Simulator (Tested)
 * Android (Tested)
 * iOS (Tested)
-* Windows Phone (Untested but should work)
-* J2ME & Legacy RIM devices (Unsupported as they don't support SQLite).
+* Windows Phone, J2ME & Legacy RIM devices (Unsupported as they don't support SQLite).
 
 
 ##License
