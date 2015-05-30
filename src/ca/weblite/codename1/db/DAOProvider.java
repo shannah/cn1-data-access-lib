@@ -20,12 +20,14 @@ import ca.weblite.codename1.db.DAO.ColType;
 import com.codename1.db.Cursor;
 import com.codename1.db.Database;
 import com.codename1.db.Row;
+import com.codename1.io.Log;
 import com.codename1.io.Util;
 import com.codename1.ui.Display;
 import com.codename1.util.StringUtil;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -255,32 +257,140 @@ public class DAOProvider {
             me = new HashMap();
             ((Map)tables).put(tableName, me);
             //Log.p("Executing PRAGMA query");
-            Cursor c = db.executeQuery("PRAGMA table_info("+tableName+")", null);
-            //Cursor c = db.executeQuery("SELECT * from \""+tableName+"\"");
-            Map myFields = new HashMap();
-            me.put("fields", myFields);
-            //Log.p("About to loop through results");
-            while ( c.next() ){
-                //Log.p("1");
-                Row row = c.getRow();
-                //Log.p("2");
-                String name = row.getString(1);
-                String type = row.getString(2);
-                //Log.p("Res name: "+name);
-                //Log.p("Res type: "+type);
+            try {
+                Cursor c = db.executeQuery("PRAGMA table_info("+tableName+")", null);
+                //Cursor c = db.executeQuery("SELECT * from \""+tableName+"\"");
+                Map myFields = new HashMap();
+                me.put("fields", myFields);
+                //Log.p("About to loop through results");
+                while ( c.next() ){
+                    //Log.p("1");
+                    Row row = c.getRow();
+                    //Log.p("2");
+                    String name = row.getString(1);
+                    String type = row.getString(2);
+                    //Log.p("Res name: "+name);
+                    //Log.p("Res type: "+type);
+
+                    dao.colTypes.put(name, colType(type));
+                    //Log.p("3");
+                    Map thisField = new HashMap();
+                    thisField.put("name", name);
+                    thisField.put("type", type);
+                    //Log.p("4");
+                    myFields.put(name, thisField);
+                    //Log.p("5");
+                }
+                //Log.p("Finished loop");
+                c.close();
+            } catch (IOException ex) {
+                // On WebSQL Pragma is banned
+                // so we need to get creative.
+                Cursor c = db.executeQuery("select sql from sqlite_master where type='table' and name=?", new String[]{tableName});
+                Map myFields = new HashMap();
+                me.put("fields", myFields);
                 
-                dao.colTypes.put(name, colType(type));
-                //Log.p("3");
-                Map thisField = new HashMap();
-                thisField.put("name", name);
-                thisField.put("type", type);
-                //Log.p("4");
-                myFields.put(name, thisField);
-                //Log.p("5");
+                if (c.next()) {
+                    Row row = c.getRow();
+                    String val = row.getString(0);
+                    val = StringUtil.replaceAll(val, "\n", " ");
+                    val = StringUtil.replaceAll(val, "\t", " ");
+                    while (val.indexOf("  ") >= 0) {
+                        val = StringUtil.replaceAll(val, "  ", " ");
+                    }
+                    
+                    int pos = val.indexOf("(");
+                    val = val.substring(pos+1);
+                    List<String> parts = StringUtil.tokenize(val, ',');
+                    for (String segment : parts) {
+                        List<String> words = StringUtil.tokenize(segment, ' ');
+                        String firstWordUC = words.get(0).trim().toUpperCase();
+                        if ("PRIMARY".equals(firstWordUC) || "KEY".equals(firstWordUC) || "INDEX".equals(firstWordUC) || "CONSTRAINT".equals(firstWordUC) || "FOREIGN".equals(firstWordUC)) {
+                            continue;
+                        }
+                        String name = StringUtil.replaceAll(words.get(0), "\"", "");
+                        if (words.size() < 2) {
+                            continue;
+                        }
+                        String type = words.get(1).trim().toUpperCase();
+                        if ("VARYING".equals(type) || "UNSIGNED".equals(type) || "BIG".equals(type) || "NATIVE".equals(type)) {
+                            if (words.size() < 3) {
+                                continue;
+                            }
+                            type = words.get(2).trim().toUpperCase();
+                        }
+                        int len = type.length();
+                        StringBuilder sb = new StringBuilder();
+                        for ( int i=0; i<len; i++) {
+                           char ch = type.charAt(i);
+                           if (ch >= 'A' && ch <= 'Z') {
+                               sb.append(ch);
+                           } 
+                        }
+                        
+                        type = sb.toString();
+                        type = normalizeType(type);
+                        Map thisField = new HashMap();
+                        thisField.put("name", name);
+                        thisField.put("type", type);
+                        myFields.put(name, thisField);
+                        
+                        dao.colTypes.put(name, colType(type));
+                        
+                        
+                    }
+                    
+                }
+                c.close();
             }
-            //Log.p("Finished loop");
-            c.close();
         }
+    }
+    
+    private static final String[] intTypes = new String[] {
+        "INT", "INTEGER", "TINYINT", "SMALLINT", "MEDIUMINT", "BIGINT", "INT2", "INT8"
+    };
+    
+    private static final String[] textTypes = new String[] {
+        "CHARACTER", "VARCHAR", "NCHAR", "CHARACTER", "NVARCHAR", "TEXT", "CLOB"
+    };
+    
+    private static final String[] blobTypes = new String[] {
+        "BLOB"
+    };
+    
+    
+    private static final String[] realTypes = new String[] {
+        "REAL", "DOUBLE", "FLOAT"
+    };
+    
+    private static final String[] numericTypes = new String[] {
+        "NUMERIC", "DECIMAL", "BOOLEAN", "DATE", "DATETIME"
+    };
+    
+    private int indexOf(String needle ,String[] haystack) {
+        int len = haystack.length;
+        for (int i=0; i<len; i++) {
+            if (needle.equals(haystack[i])) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    private String normalizeType(String type) {
+        type = type.toUpperCase();
+        if (indexOf(type, textTypes) >=0) {
+            return "TEXT";
+        } else if (indexOf(type, intTypes) >=0 ) {
+            return "INTEGER";
+        } else if (indexOf(type, blobTypes) >= 0) {
+            return "BLOB";
+        } else if (indexOf(type, realTypes) >= 0 ) {
+            return "REAL";
+        } else if (indexOf(type, numericTypes) >= 0) {
+            return "NUMERIC";
+        }
+        return type;
     }
     
     /**
