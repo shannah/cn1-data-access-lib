@@ -56,6 +56,7 @@ None.  Just [Codename One](http://www.codenameone.com).
 * Android (Tested)
 * iOS (Tested)
 * Windows Phone, J2ME & Legacy RIM devices (Unsupported as they don't support SQLite).
+* Javascript (Tested)
 
 
 ##License
