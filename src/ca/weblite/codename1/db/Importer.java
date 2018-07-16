@@ -251,7 +251,7 @@ public class Importer<T> {
      */
     public final void importJSON(InputStream is, String selector) throws IOException{
         JSONParser parser = new JSONParser();
-        Map data = parser.parseJSON(new InputStreamReader(is));
+        Map data = parser.parseJSON(new InputStreamReader(is, "UTF-8"));
         importSet(data, selector);
         
     }
