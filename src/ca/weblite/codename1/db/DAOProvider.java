@@ -115,7 +115,7 @@ public class DAOProvider {
                         }
                         cmdBuf.delete(0, cmdBuf.length());
                     }
-                    int num = Integer.parseInt(line.substring(line.indexOf(":")+1, line.length()));
+                    int num = Integer.parseInt(line.substring(line.indexOf(":")+1, line.length()).trim());
                     
                     if ( num != currVersion ){
                         if ( !versionCommands.isEmpty() ){
