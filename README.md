@@ -1,8 +1,8 @@
-#Codename One Data Access Library
+# Codename One Data Access Library
 
 This provides a Data access layer for SQLite databases in [Codename One](http://www.codenameone.com).
 
-##Contents
+## Contents
 
 1. [Motivation](#motivation)
 2. [Features](#features)
@@ -29,7 +29,7 @@ This provides a Data access layer for SQLite databases in [Codename One](http://
 13. [Tests and Examples](#tests-and-examples)
 13. [Credits](#credits)
 
-##Motivation
+## Motivation
 
 In almost all Codename One apps that I write (that use a database) there are three key functions that always occur:
 
@@ -39,18 +39,18 @@ In almost all Codename One apps that I write (that use a database) there are thr
 
 Most SDKs have a solution for this already, but Codename One currently doesn't.  So I wrote one.
 
-##Features
+## Features
 
 1. Data Access Objects for reading and writing to the database without SQL.
 2. Imports data from JSON or other data structures into the database without using SQL.
 3. Database versioning support.
 4. Entity object caching with weak references for good performance and no memory leaks.
 
-##Requirements
+## Requirements
 
 None.  Just [Codename One](http://www.codenameone.com).
 
-##Supported Platforms (Status)
+## Supported Platforms (Status)
 
 * Simulator (Tested)
 * Android (Tested)
@@ -59,24 +59,24 @@ None.  Just [Codename One](http://www.codenameone.com).
 * Javascript (Tested)
 
 
-##License
+## License
 
 Apache 2.0
 
-##Support
+## Support
 
 Post issues in the [issue tracker](https://github.com/shannah/cn1-data-access-lib/issues).
 
-##Installation
+## Installation
 
 1. Download [CN1DataAccess.cn1lib](https://github.com/shannah/cn1-data-access-lib/blob/master/dist/CN1DataAccess.cn1lib?raw=true) and copy into your app's "lib" directory.
 2. Right click on your project in the Netbeans project explorer, and select "Refresh Libs".
 
-##JavaDocs
+## JavaDocs
 
 [JavaDocs available here](https://rawgit.com/shannah/cn1-data-access-lib/master/dist/javadoc/index.html)
 
-##Getting Started
+## Getting Started
 
 For the first example, I'm going to assume you already have a database in your app, so I'll save the versioning and database creation features for a later example.  Let's suppose we have a database with a "people" table as follows:
 
@@ -89,13 +89,13 @@ CREATE TABLE people (
 )
 ~~~ 
 
-###Setting Up DAOProvider
+### Setting Up DAOProvider
 
 ~~~
 DAOProvider daoProvider = new DAOProvider(myDatabase);
 ~~~
 
-###Getting DAO for People table
+### Getting DAO for People table
 ~~~
 DAO<Map> people = (DAO<Map>)daoProvider.get("people"); // gets a DAO for the people table.
 ~~~
@@ -121,12 +121,12 @@ for ( Map person : thePeople ){
 ~~~
 
 
-###Fetching Person By ID
+### Fetching Person By ID
 ~~~
 Map person = people.getById(1);
 ~~~
 
-###Fetching People with Query
+### Fetching People with Query
 ~~~
 List<Map> matches = people.fetch(new String[]{"name","Steve"});
   // Fetches all people where name=Steve
@@ -138,7 +138,7 @@ matches = people.fetch(new String[]{
   // fetches all people where name=Steve and age=35
 ~~~
 
-###Importing from a List
+### Importing from a List
 ~~~
 List<Map> importRecords = new ArrayList<Map>();
 Map row = new HashMap();
@@ -154,7 +154,7 @@ importRecords.add(row);
 people.importSet(importRecords);
 ~~~
 
-###Importing from a Map with nested lists
+### Importing from a Map with nested lists
 
 ~~~
 
@@ -182,7 +182,7 @@ people.importSet(map, "tables/people");
 
 ~~~
 
-###Importing from a JSON Data Set
+### Importing from a JSON Data Set
 
 Suppose the server returns the following JSON:
 
@@ -262,7 +262,7 @@ From then on you can cast calls from daoProvider.get() to MyDAO.
 MyDAO people = (MyDAO)daoProvider.get("people");
 ~~~
 
-##Custom Entity Classes
+## Custom Entity Classes
 
 The previous section showed a custom DAO class, but it still only used a Map for the entity object.  Generally, if you implement a custom DAO class, you'll be using it with a custom entity class, or POJO (Plain old Java Object) also.
 
@@ -316,7 +316,7 @@ public class PersonDAO extends DAO<Person> {
 
 *Note that this snippet makes use of a NumberUtil utility class that handles conversion of non-specified types of inputs into long and int values.  Without it you would have to add some validation in retrieving values from maps and placing them in primitive attributes.
 
-###Why Create a Custom DAO class?
+### Why Create a Custom DAO class?
 
 The idea of a DAO is to shield the rest of the application from the details of SQL, and possibly some of the data structure (although the correspondence of DAOs with tables does reveal some information about the table structure).  Therefore any queries that your application needs to make to the database, should be handled inside a DAO class.
 
@@ -367,7 +367,7 @@ if ( sonyEmployees.contains(steve) ){
 
 ~~~
 
-###Entity Object Uniqueness
+### Entity Object Uniqueness
 
 The above example highlights a special property of entity objects:  their uniqueness.  Two entity objects that encapsulate the same row in the database, will always be the same object.  Therefore, we were able to check if steve is an employee of sony using `sonyEmployees.contains(steve)` because if the result set included a row representing the "steve" record, then it would be the same entity object.
 
@@ -426,7 +426,7 @@ Notice the last 2 parameters:
 
 Inside this constructor now, it is checking to see the schema version of the database.  If the schema hasn't been created yet (i.e. the version is 0), then it will look in the config file and find all of the updates <= version 1, and execute the SQL contained therein.  It stores the current version of the databse inside the database itself so that it can tell if it requires an update.
 
-###Updating Database Version
+### Updating Database Version
 
 Now, let's look at the scenario where we want to change the structure of the database for our app's 1.1 release.  We need only do 2 things to make this happen:
 
@@ -463,11 +463,11 @@ DAOProvider provider = new DAOProvider(db, "/setup.sql", 2);
 
 Now, if users are installing the app for the first time, it will execute all of the SQL statements for version 1 and 2 (because the databse will be starting from 0).  But if users had previously installed the app and already had version 1 of the schema, then it would only execute the statements in version 2 (i.e. the ALTER TABLE statement that we added).
 
-##Limitations and Constraints
+## Limitations and Constraints
 
 1. Currently tables for which you register a DAO *must* contain a column named "id" of type INTEGER, and it should be AUTOINCREMENT.  This is the column that will be treated as the primary key of the table.
 
-##Tests and Examples
+## Tests and Examples
 
 For further example usage and testing of the library, you can check out the Test application.  [This application](https://github.com/shannah/cn1-data-access-lib-tests) is just a placeholder to run the CN1 tests (i.e. it's not really an app.. You just use the "Test" function of it).  Some interesting things you may wish to look at:
 
@@ -476,7 +476,7 @@ For further example usage and testing of the library, you can check out the Test
 3. [Importing JSON](https://github.com/shannah/cn1-data-access-lib-tests/blob/master/test/ca/weblite/codename1/db/DAOTest.java#L172), from [this sample JSON data set](https://github.com/shannah/cn1-data-access-lib-tests/blob/master/src/test1.json).
 
 
-##Credits
+## Credits
 
 * Codename One Data Access Library developed and maintained by [Steve Hannah](http://www.sjhannah.com)
 * Special thanks to the [Codename One team](http://www.codenameone.com) for creating such a fantastic platform for mobile app development.
