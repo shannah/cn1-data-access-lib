@@ -69,12 +69,30 @@ Post issues in the [issue tracker](https://github.com/shannah/cn1-data-access-li
 
 ## Installation
 
+### Maven Projects
+
+If you are using a Maven project, the recommended way to install this library is by pasting the dependency
+into your common/pom.xml file:
+
+~~~~
+<dependency>
+	<artifactId>data-access-lib</artifactId>
+	<groupId>com.codenameone</groupId>
+	<version>1.0.1</version>
+	<type>pom</type>
+</dependency>
+~~~~
+
+### Ant Projects
+
+If you are not using Maven, then you can install this library via https://www.codenameone.com/cn1libs.html[Codename One Preferences], or download and install manually using  the link and instructions below:
+
 1. Download [CN1DataAccess.cn1lib](https://github.com/shannah/cn1-data-access-lib/blob/master/dist/CN1DataAccess.cn1lib?raw=true) and copy into your app's "lib" directory.
 2. Right click on your project in the Netbeans project explorer, and select "Refresh Libs".
 
 ## JavaDocs
 
-[JavaDocs available here](https://rawgit.com/shannah/cn1-data-access-lib/master/dist/javadoc/index.html)
+[JavaDocs available here](https://www.javadoc.io/doc/com.codenameone/data-access-common/latest/index.html)
 
 ## Getting Started
 

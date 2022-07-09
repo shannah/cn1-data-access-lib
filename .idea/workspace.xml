@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="791ac7de-2314-4871-80e8-bb25b13cdfb9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stubber.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codenameone_library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/CN1DataAccess.cn1lib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/allclasses-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/allclasses-noframe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/DAO.ColType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/DAO.Wrapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/DAO.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/DAOProvider.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/Importer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/class-use/DAO.ColType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/class-use/DAO.Wrapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/class-use/DAO.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/class-use/DAOProvider.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/class-use/Importer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/ca/weblite/codename1/db/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/deprecated-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-10.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-11.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-12.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-13.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-6.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index-files/index-9.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/package-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/resources/background.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/resources/tab.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/resources/titlebar.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/resources/titlebar_end.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/javadoc/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CLDC11.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CodenameOne.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CodenameOne_SRC.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest.mf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/build-impl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/genfiles.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/nativej2me.res" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/project.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ca/weblite/codename1/db/DAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ca/weblite/codename1/db/DAOProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ca/weblite/codename1/db/Importer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ca/weblite/codename1/db/NumberUtil.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenRunner">
+    <option name="delegateBuildToMaven" value="true" />
+  </component>
+  <component name="ProjectId" id="1pD3iE4rAr4Bw5nFw0V4y00PCKh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/images" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="791ac7de-2314-4871-80e8-bb25b13cdfb9" name="Default Changelist" comment="" />
+      <created>1614703962614</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614703962614</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
